@@ -35,7 +35,12 @@ const ListarVehiculos = () => {
     }
   };
 
+  const scroll =() => {
+    window.scrollTo({ top: 0, left: 0, behavior: undefined });
+  }
+
   useEffect(() => {
+    scroll();
     getAutos();
   }, []);
 
@@ -45,9 +50,11 @@ const ListarVehiculos = () => {
         <Header />
         <br />
         <br />
+        <br />
+        <br />
         <div className="row">
           <div className="col-7">
-            <h2>Listado de Vehiculos</h2>
+            <h2 className="text-danger">Listado de Vehiculos</h2>
           </div>
           <div className="col-3">
             <Link to="/admin/vehiculos/agregar">
@@ -56,7 +63,7 @@ const ListarVehiculos = () => {
           </div>
           <div className="col-2">
             <Link to="/admin">
-              <button className="btn btn-danger">X</button>
+              <button className="btn btn-danger">Regresar</button>
             </Link>
           </div>
         </div>

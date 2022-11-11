@@ -10,12 +10,14 @@ import EditarVehiculo from "./Pages/EditarVehiculo";
 import FormaPago from "./Pages/FormaPago";
 import Home from "./Pages/Home";
 import IngresoAuto from "./Pages/IngresoAuto";
+import IngresoEmpleado from "./Pages/IngresoEmpleado";
 import ListarEmpleados from "./Pages/ListarEmpleados";
 import ListarVehiculos from "./Pages/ListarVehiculos";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Vehiculos from "./Pages/Vehiculos";
 import VerAuto from "./Pages/VerAuto";
+import VerEmpleado from "./Pages/VerEmpleado";
 import View from "./Pages/View";
 
 function App() {
@@ -44,7 +46,9 @@ function App() {
           <Route path="/admin/vehiculos/agregar" element={<IngresoAuto />}/>
           <Route path="/admin/vehiculos/ver/:id" element={<VerAuto/>}/>
           <Route path="/admin/empleados" element={<ListarEmpleados/>}/>
+          <Route path="/admin/empleados/agregar" element={<IngresoEmpleado/>}/>
           <Route path="/admin/empleados/editar/:id" element={<EditarEmpleado/>}/>
+          <Route path="/admin/empleados/ver/:id" element={<VerEmpleado />}/>
         </Route>
       </Routes>
     </BrowserRouter>

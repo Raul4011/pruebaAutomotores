@@ -17,6 +17,8 @@ const VerAuto = () => {
   const [imagen, setImagen] = useState("");
   const [precioCompra, setPrecioCompra] = useState("");
   const [patente, setPatente] = useState("");
+  const [color,setColor]= useState('')
+  const [motor,setMotor] =useState('')
 
   const getCar = () => {
     axios.get(BASE_URL + id).then((resp) => {
@@ -27,11 +29,19 @@ const VerAuto = () => {
       setImagen(resp.data[0].imagen);
       setPrecioCompra(resp.data[0].precioCompra);
       setPatente(resp.data[0].patente);
+      setColor(resp.data[0].color)
+      setMotor(resp.data[0].motor)
     });
   };
 
+  const scroll =() => {
+    window.scrollTo({ top: 0, left: 0, behavior: undefined });
+  }
+
   useEffect(() => {
+    scroll();
     getCar();
+    
   }, []);
 
   return (
@@ -40,25 +50,29 @@ const VerAuto = () => {
         <Header />
         <br />
         <br />
-        
+        <br />
+        <br />
+        <br />
         <Card style={{ width: "40rem" }} className="m-auto">
-          <Link to={"/admin/vehiculos"}>
-            <Button variant="danger">X</Button>
-          </Link>
+          
           <Card.Img variant="top" src={imagen} />
           <Card.Body className="text-center">
-            <Card.Title>
+            <Card.Title className="text-primary">
               {marca} {modelo}
             </Card.Title>
-            <Card.Text>Año: {anio}</Card.Text>
-            <Card.Text>Tipo: {tipo}</Card.Text>
-            <Card.Text>Precio: {precioCompra}</Card.Text>
-            <Card.Text>Patente: {patente}</Card.Text>
+            <Card.Text><span className="font-weight-bold">Año: </span>{anio}</Card.Text>
+            <Card.Text><span className="font-weight-bold">Tipo: </span>{tipo}</Card.Text>
+            <Card.Text><span className="font-weight-bold">Motor: </span>{motor}</Card.Text>
+            <Card.Text><span className="font-weight-bold">Precio: </span>{precioCompra}</Card.Text>
+            <Card.Text><span className="font-weight-bold">Patente: </span>{patente}</Card.Text>
+            <Card.Text><span className="font-weight-bold">Color: </span>{color}</Card.Text>
           </Card.Body>
-          <Link to='/admin/vehiculos'>
-            <Button className="btn btn-success">Volver</Button>
+          <Link to='/admin/vehiculos' className="text-center">
+            <Button className="btn btn-block btn-success">Volver</Button>
           </Link>
+         
         </Card>
+        <br />
         <br />
         <br />
       </div>

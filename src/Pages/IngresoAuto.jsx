@@ -57,6 +57,8 @@ const IngresoAuto = () => {
     <div className="text-center">
       <br />
       <br />
+      <br />
+      <br />
       <h3>Ingrese un nuevo vehiculo</h3>
       <br />
       <form onSubmit={createAuto}>

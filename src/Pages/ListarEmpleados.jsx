@@ -18,12 +18,28 @@ const ListarEmpleados = () => {
         })
     }
 
-    const borrarEmpleado = () =>{
-      axios.delete()
+    const borrarEmpleado = async(id) =>{
+      let eliminarEmpleado = prompt(
+        "Estas seguro que quieres eliminar este vehiculo si/no"
+      );
+      if (eliminarEmpleado==='si' || eliminarEmpleado==='S'  || eliminarEmpleado==='SI'  || eliminarEmpleado==='s') {
+        let eliminar = await axios.delete(BASE_URL + id);
+        if (eliminar) {
+          alert("Auto eliminado correctamente");
+          axios.get(BASE_URL).then((resp) => {
+            setEmpleados(resp.data);
+          });
+        }
+      }else {
+        return
+      }
+    }
+    const scroll =() => {
+      window.scrollTo({ top: 0, left: 0, behavior: undefined });
     }
 
-
     useEffect(()=>{
+      scroll()
         getEmpleados()
     },[])
 
@@ -35,7 +51,21 @@ const ListarEmpleados = () => {
         <br />
         <br />
         <br />
-        <h2>Listado de Empleados</h2>
+        <div className="row">
+          <div className="col-7">
+            <h2 className="text-danger">Listado de Empleados</h2>
+          </div>
+          <div className="col-3">
+            <Link to="/admin/empleados/agregar">
+              <button className="btn btn-primary">Agregar</button>
+            </Link>
+          </div>
+          <div className="col-2">
+            <Link to="/admin">
+              <button className="btn btn-danger">Regresar</button>
+            </Link>
+          </div>
+        </div>
         <br />
         <table className="table text-center">
           <thead>
@@ -77,7 +107,7 @@ const ListarEmpleados = () => {
                         <BiPencil />
                       </button>
                     </Link>
-                    <Link to={`/ver/${item.id}`}>
+                    <Link to={`/admin/empleados/ver/${item.id}`}>
                       <button className="btn btn-success">
                         <FaEye />
                       </button>
